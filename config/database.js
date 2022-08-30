@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 mongoose.connect(
-    process.env.MONGO_CONECTION, 
+    process.env.DB_MONGO, 
     {
         useUnifiedTopology: true, //habilita a mongo a controlar la db de mongo
         useNewUrlParser: true //itiliza el analizador de errores de mongoose en lugar de la de mongo
@@ -13,3 +13,8 @@ mongoose.connect(
     .catch(error=>console.log(error))//Si no se pudo conectar consologueo el error.
 
     //una vez configurada la conexcion: requiero esta coneccion en app.js
+
+
+
+
+    
