@@ -15,6 +15,31 @@ const eventController ={
                 success: false
             })
         }
+    },
+    read: async(req, res) => {
+        const {id} = req.params
+        try {
+            let city = await Event.findOne({_id:id})
+            if(city){
+                res.status(200).json({
+                    message: "You get one city",
+                     response: city,
+                    success: true
+                 })
+            } else {
+                res.status(404).json({
+                    message: "could't find event",
+                    success: false
+                 })
+                
+            }
+          } catch(error) {
+                console.log(error)
+                res.status(400).json({
+                message: "error",
+                success: false
+            })
+      }
     }
 }
 
