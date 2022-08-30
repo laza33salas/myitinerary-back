@@ -6,6 +6,6 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'MyItinerary' });
 });
 
-router.use('/events', cityRouter) 
+router.use('/cities', cityRouter) 
 
 module.exports = router;
