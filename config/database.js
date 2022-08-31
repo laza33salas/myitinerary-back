@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
-mongoose.connect(
-    process.env.DB_MONGO, 
+  let db = mongoose.connect(
+    process.env.MONGO_URI, 
     {
         useUnifiedTopology: true, //habilita a mongo a controlar la db de mongo
         useNewUrlParser: true //itiliza el analizador de errores de mongoose en lugar de la de mongo
@@ -15,6 +15,4 @@ mongoose.connect(
     //una vez configurada la conexcion: requiero esta coneccion en app.js
 
 
-
-
-    
+module.exports = db
