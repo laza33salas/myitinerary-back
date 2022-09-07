@@ -47,7 +47,61 @@ const itineraryController ={
                  success: false
              })
        }
-     }
+     },
+
+     updateItinerary: async(req,res) =>{
+        const {id} = req.params
+        const itinerary = req.body
+        let itineraryChange
+        try{
+            itineraryChange = await Itinerary.findOneAndUpdate({_id:id}, itinerary, {new:true})
+            if(itineraryChange){
+                res.status(200).json({
+                    message: "itinerary modifed",
+                    response: itineraryChange,
+                    success: true
+                })
+            } else {
+                res.status(404).json({
+                    message: "could't find itinerary",
+                    success: false
+                 })
+            }
+        }catch(error){
+            console.log(error)
+            res.status(400).json({
+                message: "error",
+                success: false
+            })
+        }
+    },
+
+    removeItinerary: async(req, res) => {
+        const {id} = req.params
+        try {
+            let itinerary = await Itinerary.findOneAndDelete({_id:id})
+            if(itinerary){
+                res.status(200).json({
+                    message: "You delete one itinerary",
+                     response: itinerary,
+                    success: true
+                 })
+            } else {
+                res.status(404).json({
+                    message: "could't find itinerary",
+                    success: false
+                 })
+
+            }
+          } catch(error) {
+                console.log(error)
+                res.status(400).json({
+                message: "error",
+                success: false
+            })
+      }
+
+    }
 }
 
 module.exports = itineraryController
