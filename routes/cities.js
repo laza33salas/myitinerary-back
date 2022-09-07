@@ -11,7 +11,7 @@ router.post('/', create)
 router.get('/:id', read)
 router.get('/', readAll)
 router.delete('/:id', remove)
-router.patch('/:id', update)
+router.put('/:id', update)
 
 //localhost8000/events/
 
