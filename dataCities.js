@@ -108,7 +108,7 @@ for (let i = 0; i < dataCiudad.length; i++) {
         photo: dataCiudad.photo,
         country: dataCiudad.country,
         description: dataCiudad.description,
-        foundation: dataCiudad.foundation,
+        foundation: dataCiudad.foundation.slice(0,4),
         population: dataCiudad.population
 
     })
