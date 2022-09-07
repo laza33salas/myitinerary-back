@@ -1,9 +1,9 @@
 const mongoose = require('mongoose')
 
 const schema = new mongoose.Schema({
-    comment:{type: String, required: true},
-    user:{type: String, required: false},
-    itinerary:{type: String, required: false}
+    comment:{type: mongoose.Types.ObjectId, ref:'comments', required: true},
+    user:{type: mongoose.Types.ObjectId, ref:'users'},
+    itinerary:{type: mongoose.Types.ObjectId, ref:'itineraries'}
 })
 
 const Comment = mongoose.model(
