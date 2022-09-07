@@ -8,6 +8,7 @@ const commentController={
            let comment = await new Comment(req.body).save()//req.body tiene que tener si o si todas las variables antes descriptas.
             res.status(201).json({
                 message: 'comment created',
+              
                 success: true
             }) 
         } catch(error) {
