@@ -102,17 +102,17 @@ const dataCiudad = [
     },
 ]
 
-for (let i = 0; i < dataCiudad.length; i++) {
+dataCiudad.forEach(dato =>{
     City.create({
-        city: dataCiudad.city,
-        photo: dataCiudad.photo,
-        country: dataCiudad.country,
-        description: dataCiudad.description,
-        foundation: dataCiudad.foundation.slice(0,4),
-        population: dataCiudad.population
-
+        city: dato.city,
+        photo: dato.photo,
+        country: dato.country,
+        description: dato.description,
+        foundation: dato.foundation.slice(0,4),
+        population: dato.population
+})
     })
-}
+
 
 
 
