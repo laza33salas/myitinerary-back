@@ -21,9 +21,8 @@ const itineraryController ={
     readItineraries: async(req, res) => {
         let query = {}
          let itineraries 
-         if (req.query.itinerary) {
-             let regExp = new RegExp(`^${req.query.itinerary}`, 'i') 
-             query.itinerary = regExp
+         if (req.query.city) {
+             query.city = req.query.city
          }
          try {
             itineraries = await Itinerary.find(query)
