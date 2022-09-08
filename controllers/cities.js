@@ -5,11 +5,13 @@ const eventController ={
     create: async(req, res) =>{
         //const {name, image, date, description, category, place, capacity, assistance, stimated, price} = req.body
         try{
-            await new City(req.body).save()//req.body tiene que tener si o si todas las variables antes descriptas.
+            console.log(req.body)
+           let city = await new City(req.body).save()//req.body tiene que tener si o si todas las variables antes descriptas.
             res.status(201).json({
                 message: 'city created',
+                response: city._id,
                 success: true
-            })
+            }) 
         } catch(error) {
             res.status(400).json({
                 message: "coul't create City",
@@ -19,35 +21,35 @@ const eventController ={
     },
 
     readAll: async(req, res) => {
-        const query = req.query
-        let cities 
-        if (query.city) {
-            let regExp = new RegExp(`^${query.city}`)
-            query.city = regExp
-        }
-        try {
-            cities = await City.find(query? query:null)
-                if(cities){
-                    res.status(200).json({
-                        message: "You get all cities",
+        let query = {}
+         let cities 
+         if (req.query.city) {
+             let regExp = new RegExp(`^${req.query.city}`, 'i') 
+             query.city = regExp
+         }
+         try {
+             cities = await City.find(query)
+                 if(cities){
+                     res.status(200).json({
+                         message: "You get all cities",
                          response: cities,
-                        success: true
+                         success: true
+                      })
+                 }else{
+                     res.status(404).json({
+                         message:"Could't find cities"
                      })
-                }else{
-                    res.status(404).json({
-                        message:"Could't find cities"
-                    })
-                }
-               
-            } 
-             catch(error) {
-                console.log(error)
-                res.status(500).json({
-                message: "error",
-                success: false
-            })
-      }
-    },
+                 }
+ 
+             } 
+              catch(error) {
+                 console.log(error)
+                 res.status(500).json({
+                 message: "error",
+                 success: false
+             })
+       }
+     },
 
 
     read: async(req, res) => {
@@ -117,6 +119,11 @@ const eventController ={
                     response: CityChange,
                     success: true
                 })
+            } else {
+                res.status(404).json({
+                    message: "could't find city",
+                    success: false
+                 })
             }
         }catch(error){
             console.log(error)
