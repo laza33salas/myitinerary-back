@@ -1,6 +1,6 @@
 require("dotenv").config()
 const db = require('./config/database')//Importamos DB
-const Itinerary = require('./models/User') //Importamos modelo
+const Itinerary = require('./models/Itinerary') //Importamos modelo
 
 
 
@@ -9,7 +9,7 @@ const dataUser= [
     {
         name: "Excursion to Washington D.C.",
         user: "Salas",
-        city: "New York", 
+        city: "630f859926ae40f0802df990", 
         price: 500,
         likes:[],
         tags: [],
@@ -20,7 +20,7 @@ const dataUser= [
     {
         name: "Harry Potter Tour at Warner Studios",
         user: "Medici",
-        city: "London", 
+        city: "630f9506cf288787d91694df", 
         price: 500,
         likes:[],
         tags: [],
@@ -31,7 +31,7 @@ const dataUser= [
     {
         name: "Guided tour of the Vatican Museums and Sistine Chapel",
         user: "Igna",
-        city: "Rome", 
+        city: "630f9506cf288787d91694e3", 
         price: 200,
         likes:[],
         tags: [],
@@ -42,7 +42,7 @@ const dataUser= [
     {
         name: "Private tour of Hong Kong Island with a guide in Spanish",
         user: "Pablo",
-        city: "Hong Kong", 
+        city: "630f859926ae40f0802df98a", 
         price: 700,
         likes:[],
         tags: [],
@@ -53,7 +53,7 @@ const dataUser= [
     {
         name: "Symphony of Lights Cruise by Traditional Boat",
         user: "Marco",
-        city: "Hong Kong", 
+        city: "630f859926ae40f0802df98a", 
         price: 900,
         likes:[],
         tags: [],
@@ -64,7 +64,7 @@ const dataUser= [
     {
         name: "Full tour of Dubai",
         user: "Elena",
-        city: "Dubai", 
+        city: "630f9506cf288787d91694e7", 
         price: 2000,
         likes:[],
         tags: [],
@@ -75,7 +75,7 @@ const dataUser= [
     {
         name: "Helicopter ride over Dubai",
         user: "Nano",
-        city: "Dubai", 
+        city: "630f9506cf288787d91694e7", 
         price: 1500,
         likes:[],
         tags: [],
@@ -86,7 +86,7 @@ const dataUser= [
     {
         name: "Taman Negara Jungle Tour",
         user: "Elvio",
-        city: "Dubai", 
+        city: "630f9506cf288787d91694e4", 
         price: 38,
         likes:[],
         tags: [],
@@ -97,7 +97,7 @@ const dataUser= [
     {
         name: "Excursion to the Cameron Highlands",
         user: "Leen",
-        city: "Dubai", 
+        city: "630f9506cf288787d91694e4", 
         price: 139,
         likes:[],
         tags: [],
@@ -108,7 +108,7 @@ const dataUser= [
     {
         name: "Admission to Gardens by the Bay",
         user: "Leo",
-        city: "Singapore", 
+        city: "630f9506cf288787d91694de", 
         price: 500,
         likes:[],
         tags: [],
@@ -118,7 +118,7 @@ const dataUser= [
     {
         name: "Tour from the airport",
         user: "Leo",
-        city: "Singapore", 
+        city: "630f9506cf288787d91694de", 
         price: 100,
         likes:[],
         tags: [],
@@ -127,7 +127,7 @@ const dataUser= [
     {
         name: "Singapore sightseeing bus",
         user: "Juan",
-        city: "Singapore", 
+        city: "630f9506cf288787d91694de", 
         price: 50,
         likes:[],
         tags: [],
@@ -137,7 +137,7 @@ const dataUser= [
     {
         name: "Guided tour of Macau",
         user: "Andre",
-        city: "Macau", 
+        city: "630f9506cf288787d91694e1", 
         price: 505,
         likes:[],
         tags: [],
@@ -147,7 +147,7 @@ const dataUser= [
     {
         name: "Lunch at the revolving restaurant of the Macau Tower",
         user: "Jose",
-        city: "Macau", 
+        city: "630f9506cf288787d91694e1", 
         price: 250,
         likes:[],
         tags: [],
@@ -157,7 +157,7 @@ const dataUser= [
     {
         name: "GTour on bike around Macao",
         user: "Tuti",
-        city: "Macau", 
+        city: "630f9506cf288787d91694e1", 
         price: 45,
         likes:[],
         tags: [],
@@ -167,7 +167,7 @@ const dataUser= [
     {
         name: "Market on the tracks, floating market and ruins of Ayutthaya",
         user: "Duko",
-        city: "Bangkok", 
+        city: "630f9506cf288787d91694dd", 
         price: 505,
         likes:[],
         tags: [],
@@ -176,7 +176,7 @@ const dataUser= [
     {
         name: "Private tour from Bangkok",
         user: "Cthulhu",
-        city: "Bangkok", 
+        city: "630f9506cf288787d91694dd", 
         price: 250,
         likes:[],
         tags: [],
@@ -185,7 +185,7 @@ const dataUser= [
     {
         name: "Ayutthaya tour",
         user: "Gengar",
-        city: "Bangkok", 
+        city: "630f9506cf288787d91694dd", 
         price: 90,
         likes:[],
         tags: [],
