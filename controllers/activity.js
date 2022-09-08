@@ -20,8 +20,8 @@ const activityController={
     readActivities: async(req, res) => {
         let query = {}
          let activities 
-         if (req.query.city) {
-             query.city = req.query.city
+         if (req.query.itinerary) {
+             query.itinerary = req.query.itinerary
          }
          try {
             activities = await Activity.find(query)
