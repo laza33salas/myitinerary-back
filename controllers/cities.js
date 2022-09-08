@@ -32,7 +32,7 @@ const eventController ={
                  if(cities){
                      res.status(200).json({
                          message: "You get all cities",
-                          response: cities,
+                         response: cities,
                          success: true
                       })
                  }else{

@@ -19,14 +19,12 @@ const activityController={
     },
     readActivities: async(req, res) => {
         let query = {}
-         let activities
-         if (req.query.activity) {
-             let regExp = new RegExp(`^${req.query.activity}`, 'i') 
-             query.activity = regExp
+         let activities 
+         if (req.query.city) {
+             query.city = req.query.city
          }
          try {
             activities = await Activity.find(query)
-                .populate('itineraries')
                  if(activities){
                      res.status(200).json({
                          message: "You get all activities",
