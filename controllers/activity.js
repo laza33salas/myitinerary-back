@@ -25,7 +25,8 @@ const activityController={
          }
          try {
             activities = await Activity.find(query)
-                 if(activities){
+            .populate("itineraries", {name:1})     
+            if(activities){
                      res.status(200).json({
                          message: "You get all activities",
                           response: activities,
