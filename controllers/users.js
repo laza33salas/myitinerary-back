@@ -52,6 +52,9 @@ const userController ={
              })
        }
      },
+
+
+
      signUp: async(req,red) => {
         const {
             name,
@@ -121,7 +124,7 @@ const userController ={
 
  verifyMail:async(req, res) => {
     const {code} = req.params 
-    let use = await User.findOne({code:code})
+    let user = await User.findOne({code:code})
     try{
         if(user) {
             user.verified = true //cambio la propiedad.
@@ -142,9 +145,93 @@ const userController ={
     }
  },
 
-    signIn: async() => {},
+    signIn: async() => {
+        const {mail, password, from} = req.body
 
-    signOut:async() => {}//findOneAndUpdate y cambiar logged de true a false.
-}
+    try{
+        const user = await user.findOne({mail})
+        if(!user){ //Si usuario no existe
+            res.status(404).json({
+                success: false,
+                message: "User dosen't exist, please sign up."
+            })
+        } else if(user.verified){ //Si usuario existe y esta verificado
+            const checkPass = user.password.filter(passwordElement => bcryptjs.compareSync(password, passwordElement))
+            if(from == 'form'){ //Si el usuario intente ingresar por FORM
+                if(checkPass.length > 0){ //Contraseña coincide
+                   
+                    const loginUser = {
+                        id: user._id,
+                        name: user.name,
+                        mail: user.mail,
+                        role: user.role,
+                        from: user.from,
+                        photo: user.photo
+                    }
+                   
+                    user.logged = true
+                    await user.save()
+
+                    res.status(200).json({
+                        success: true,
+                        response: {user: loginUser},
+                        message: 'Welcome ' + user.name
+                    })
+
+                } else { //Contraseña no coincide
+                    res.status(400).json({
+                        success: false,
+                        message: 'Username or password incorrect'
+                    })
+                }
+            } else { //Si el usuario intenta ingresar por RRSS
+                if(checkPass.length > 0){ //Contraseña coincide
+                   
+                    const loginUser = {
+                        id: user._id,
+                        name: user.name,
+                        mail: user.mail,
+                        role: user.role,
+                        from: user.from,
+                        photo: user.photo
+                    }
+                   
+                    user.logged = true
+                    await user.save()
+
+                    res.status(200).json({
+                        success: true,
+                        response: {user: loginUser},
+                        message: 'Welcome ' + user.name
+                    })
+
+                } else { //Contraseña no coincide
+                    res.status(400).json({
+                        success: false,
+                        message: 'Username or password incorrect'
+                    })
+                }
+            }
+        } else { //Usuario existe pero no esta verificado.
+            res.status(401).json({
+                success: false,
+                message: 'Please, verify your email account and try again'
+            })
+        }
+    } catch(error){
+        console.log(error)
+        res.status(400).json({
+            success: false,
+            message: 'Sign in ERROR, please try again.'
+        })
+    }
+
+},
+
+
+signOut:async() => {}//findOneAndUpdate y cambiar logged de true a false.
+    }
+
+
 
 module.exports = userController
