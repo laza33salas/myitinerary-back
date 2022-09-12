@@ -119,7 +119,28 @@ const userController ={
         }
     },
 
- verifyMail:async() => {},
+ verifyMail:async(req, res) => {
+    const {code} = req.params 
+    let use = await User.findOne({code:code})
+    try{
+        if(user) {
+            user.verified = true //cambio la propiedad.
+            await user.save() //guardo el cambio en la bse de datos.
+            res.redirect('https://www.google.com')//cambiar por index o bienvenida, pagina de ej a redireccionar HOST FRONT
+        } else {
+            res.status(404).json({
+                message: "could't verify account",
+                success: false
+            })
+        }
+    } catch (error){
+        console.log(error)
+        res.status(404).json({
+            message: "could't verify account",
+            success: false
+        })
+    }
+ },
 
     signIn: async() => {},
 

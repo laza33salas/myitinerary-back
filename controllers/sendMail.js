@@ -39,10 +39,11 @@ const sendMail = async(mail, code) => {
             html: `
                 <div>
                     <h1>Hola ${mail}</h1>
+                    <a href='http://localhost:4000/auth/verify/${code}'>clik to verify!</a> 
                 </div>
             ` //Codigo HTML puro que se va a renderizar en el cuerpo del mail.
             //en el cuerpo del html tengo que enviar un link a una direccion que verifique la clave unica de verificación.
-
+            //localhost cambiar por back hosteado
         }
 
         await transport.sendMail(mailOptions, (error, response)=>{
