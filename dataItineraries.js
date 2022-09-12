@@ -8,7 +8,7 @@ const Itinerary = require('./models/Itinerary') //Importamos modelo
 const dataUser= [
     {
         name: "Excursion to Washington D.C.",
-        user: "Salas",
+        user: "631f454be01437a9620c315a",
         city: "630f859926ae40f0802df990", 
         price: 500,
         likes:[],
@@ -19,7 +19,7 @@ const dataUser= [
 
     {
         name: "Harry Potter Tour at Warner Studios",
-        user: "Medici",
+        user: "631f454be01437a9620c315b",
         city: "630f9506cf288787d91694df", 
         price: 500,
         likes:[],
@@ -30,7 +30,7 @@ const dataUser= [
 
     {
         name: "Guided tour of the Vatican Museums and Sistine Chapel",
-        user: "Igna",
+        user: "631f454be01437a9620c315a",
         city: "630f9506cf288787d91694e3", 
         price: 200,
         likes:[],
@@ -41,7 +41,7 @@ const dataUser= [
 
     {
         name: "Private tour of Hong Kong Island with a guide in Spanish",
-        user: "Pablo",
+        user: "631f454be01437a9620c315b",
         city: "630f859926ae40f0802df98a", 
         price: 700,
         likes:[],
@@ -52,7 +52,7 @@ const dataUser= [
 
     {
         name: "Symphony of Lights Cruise by Traditional Boat",
-        user: "Marco",
+        user: "631f454be01437a9620c315a",
         city: "630f859926ae40f0802df98a", 
         price: 900,
         likes:[],
@@ -63,7 +63,7 @@ const dataUser= [
 
     {
         name: "Full tour of Dubai",
-        user: "Elena",
+        user: "631f454be01437a9620c315b",
         city: "630f9506cf288787d91694e7", 
         price: 2000,
         likes:[],
@@ -74,7 +74,7 @@ const dataUser= [
 
     {
         name: "Helicopter ride over Dubai",
-        user: "Nano",
+        user: "631f454be01437a9620c315a",
         city: "630f9506cf288787d91694e7", 
         price: 1500,
         likes:[],
@@ -85,7 +85,7 @@ const dataUser= [
 
     {
         name: "Taman Negara Jungle Tour",
-        user: "Elvio",
+        user: "631f454be01437a9620c315b",
         city: "630f9506cf288787d91694e4", 
         price: 38,
         likes:[],
@@ -96,7 +96,7 @@ const dataUser= [
 
     {
         name: "Excursion to the Cameron Highlands",
-        user: "Leen",
+        user: "631f454be01437a9620c315b",
         city: "630f9506cf288787d91694e4", 
         price: 139,
         likes:[],
@@ -107,7 +107,7 @@ const dataUser= [
 
     {
         name: "Admission to Gardens by the Bay",
-        user: "Leo",
+        user: "631f454be01437a9620c315b",
         city: "630f9506cf288787d91694de", 
         price: 500,
         likes:[],
@@ -117,7 +117,7 @@ const dataUser= [
     },
     {
         name: "Tour from the airport",
-        user: "Leo",
+        user: "631f454be01437a9620c315b",
         city: "630f9506cf288787d91694de", 
         price: 100,
         likes:[],
@@ -126,7 +126,7 @@ const dataUser= [
     },
     {
         name: "Singapore sightseeing bus",
-        user: "Juan",
+        user: "631f454be01437a9620c315c",
         city: "630f9506cf288787d91694de", 
         price: 50,
         likes:[],
@@ -136,7 +136,7 @@ const dataUser= [
 
     {
         name: "Guided tour of Macau",
-        user: "Andre",
+        user: "631f454be01437a9620c315a",
         city: "630f9506cf288787d91694e1", 
         price: 505,
         likes:[],
@@ -146,7 +146,7 @@ const dataUser= [
     ,
     {
         name: "Lunch at the revolving restaurant of the Macau Tower",
-        user: "Jose",
+        user: "631f454be01437a9620c315c",
         city: "630f9506cf288787d91694e1", 
         price: 250,
         likes:[],
@@ -156,7 +156,7 @@ const dataUser= [
     ,
     {
         name: "GTour on bike around Macao",
-        user: "Tuti",
+        user: "631f454be01437a9620c315c",
         city: "630f9506cf288787d91694e1", 
         price: 45,
         likes:[],
@@ -166,7 +166,7 @@ const dataUser= [
 
     {
         name: "Market on the tracks, floating market and ruins of Ayutthaya",
-        user: "Duko",
+        user: "631f454be01437a9620c315c",
         city: "630f9506cf288787d91694dd", 
         price: 505,
         likes:[],
@@ -175,7 +175,7 @@ const dataUser= [
     },
     {
         name: "Private tour from Bangkok",
-        user: "Cthulhu",
+        user: "631f454be01437a9620c315c",
         city: "630f9506cf288787d91694dd", 
         price: 250,
         likes:[],
@@ -184,7 +184,7 @@ const dataUser= [
     },
     {
         name: "Ayutthaya tour",
-        user: "Gengar",
+        user: "631f454be01437a9620c315c",
         city: "630f9506cf288787d91694dd", 
         price: 90,
         likes:[],
