@@ -22,9 +22,12 @@ const commentController={
         let query = {}
          let comments 
          if (req.query.comment) {
-             let regExp = new RegExp(`^${req.query.comment}`, 'i') 
-             query.comment = regExp
+           req.query = req.query.comment
          }
+
+         if (req.query.itinerary) {
+            req.query = req.query.itinerary
+          }
          try {
             comments = await Comment.find(query)
                 .populate('comment')
