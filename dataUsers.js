@@ -41,7 +41,8 @@ const dataUser= [
 
 dataUser.forEach(dato => { 
      User.create({
-        name: dato.name,
+    
+    name: dato.name,
     lastName: dato.lastName,
     mail: dato.mail,
     password: dato.password,
