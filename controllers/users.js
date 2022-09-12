@@ -26,10 +26,10 @@ const userController ={
         let query = {}
          let users 
          if (req.query.user) {
-             let regExp = new RegExp(`^${req.query.user}`, 'i') 
-             query.user = regExp
+            req.user = req.query.user
          }
          try {
+
              users = await User.find(query)
                  if(users){
                      res.status(200).json({

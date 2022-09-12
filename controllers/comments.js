@@ -8,7 +8,7 @@ const commentController={
            let comment = await new Comment(req.body).save()//req.body tiene que tener si o si todas las variables antes descriptas.
             res.status(201).json({
                 message: 'comment created',
-              
+                response: comment,
                 success: true
             }) 
         } catch(error) {
@@ -22,9 +22,12 @@ const commentController={
         let query = {}
          let comments 
          if (req.query.comment) {
-             let regExp = new RegExp(`^${req.query.comment}`, 'i') 
-             query.comment = regExp
+           req.query = req.query.comment
          }
+
+         if (req.query.itinerary) {
+            req.query = req.query.itinerary
+          }
          try {
             comments = await Comment.find(query)
                 .populate('comment')

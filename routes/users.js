@@ -10,4 +10,5 @@ router.get('/', function(req, res, next) {
 router.post('/', newUser)
 router.get('/', readUsers)
 
+
 module.exports = router;
