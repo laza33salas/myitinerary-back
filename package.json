@@ -20,5 +20,8 @@
     "mongoose": "^6.5.3",
     "morgan": "~1.9.1",
     "nodemailer": "^6.7.8"
+  },
+  "devDependencies": {
+    "supertest": "^6.2.4"
   }
 }
