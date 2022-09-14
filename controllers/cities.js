@@ -5,12 +5,13 @@ const eventController ={
     create: async(req, res) =>{
         //const {name, image, date, description, category, place, capacity, assistance, stimated, price} = req.body
         try{
-            console.log(req.body)
+
            let city = await new City(req.body).save()//req.body tiene que tener si o si todas las variables antes descriptas.
             res.status(201).json({
                 message: 'city created',
                 response: city._id,
-                success: true
+                success: true,
+                id: city._id
             }) 
         } catch(error) {
             res.status(400).json({
