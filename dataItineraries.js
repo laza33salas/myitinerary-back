@@ -11,8 +11,8 @@ const dataUser= [
         user: "631f454be01437a9620c315a",
         city: "630f859926ae40f0802df990", 
         price: 500,
-        likes:[],
-        tags: [],
+        likes:[5],
+        tags: ["#piola", "#aguante argentina"],
         duration: 2
 
     },
@@ -22,8 +22,8 @@ const dataUser= [
         user: "631f454be01437a9620c315b",
         city: "630f9506cf288787d91694df", 
         price: 500,
-        likes:[],
-        tags: [],
+        likes:[10],
+        tags: ["#aguante argentina", "#chavo"],
         duration: 5
 
     },
@@ -33,8 +33,8 @@ const dataUser= [
         user: "631f454be01437a9620c315a",
         city: "630f9506cf288787d91694e3", 
         price: 200,
-        likes:[],
-        tags: [],
+        likes:[74],
+        tags: ["#ArgentinaTeAmo"],
         duration: 9
 
     },
@@ -44,8 +44,8 @@ const dataUser= [
         user: "631f454be01437a9620c315b",
         city: "630f859926ae40f0802df98a", 
         price: 700,
-        likes:[],
-        tags: [],
+        likes:[6],
+        tags: ["#CampeonesDelMundo"],
         duration: 2
 
     },
@@ -55,8 +55,8 @@ const dataUser= [
         user: "631f454be01437a9620c315a",
         city: "630f859926ae40f0802df98a", 
         price: 900,
-        likes:[],
-        tags: [],
+        likes:[3],
+        tags: ["#TraemeLaCopaMessi"],
         duration: 3
 
     },
@@ -66,8 +66,8 @@ const dataUser= [
         user: "631f454be01437a9620c315b",
         city: "630f9506cf288787d91694e7", 
         price: 2000,
-        likes:[],
-        tags: [],
+        likes:[3],
+        tags: ["#ElDiegooooooooo"],
         duration: 2
 
     },
@@ -77,8 +77,8 @@ const dataUser= [
         user: "631f454be01437a9620c315a",
         city: "630f9506cf288787d91694e7", 
         price: 1500,
-        likes:[],
-        tags: [],
+        likes:[56],
+        tags: ["#teHice"],
         duration: 3
 
     },
@@ -88,8 +88,8 @@ const dataUser= [
         user: "631f454be01437a9620c315b",
         city: "630f9506cf288787d91694e4", 
         price: 38,
-        likes:[],
-        tags: [],
+        likes:[33],
+        tags: ["#bienYvos?"],
         duration: 2
 
     },
@@ -99,8 +99,8 @@ const dataUser= [
         user: "631f454be01437a9620c315b",
         city: "630f9506cf288787d91694e4", 
         price: 139,
-        likes:[],
-        tags: [],
+        likes:[32],
+        tags: ["#BuenDiaa"],
         duration: 3
 
     },
@@ -110,8 +110,8 @@ const dataUser= [
         user: "631f454be01437a9620c315b",
         city: "630f9506cf288787d91694de", 
         price: 500,
-        likes:[],
-        tags: [],
+        likes:[22],
+        tags: ["#Sprint4", "#te", "#Cocinamos"],
         duration: 1
     
     },
@@ -120,8 +120,8 @@ const dataUser= [
         user: "631f454be01437a9620c315b",
         city: "630f9506cf288787d91694de", 
         price: 100,
-        likes:[],
-        tags: [],
+        likes:[12],
+        tags: ["#River"],
         duration: 2
     },
     {
@@ -129,8 +129,8 @@ const dataUser= [
         user: "631f454be01437a9620c315c",
         city: "630f9506cf288787d91694de", 
         price: 50,
-        likes:[],
-        tags: [],
+        likes:[41],
+        tags: ["#TengoMiedo"],
         duration: 3
     },
 
@@ -139,8 +139,8 @@ const dataUser= [
         user: "631f454be01437a9620c315a",
         city: "630f9506cf288787d91694e1", 
         price: 505,
-        likes:[],
-        tags: [],
+        likes:[22],
+        tags: ["#Arre"],
         duration: 5
     }
     ,
@@ -149,8 +149,8 @@ const dataUser= [
         user: "631f454be01437a9620c315c",
         city: "630f9506cf288787d91694e1", 
         price: 250,
-        likes:[],
-        tags: [],
+        likes:[36],
+        tags: ["#6x6"],
         duration: 2
     }
     ,
@@ -159,8 +159,8 @@ const dataUser= [
         user: "631f454be01437a9620c315c",
         city: "630f9506cf288787d91694e1", 
         price: 45,
-        likes:[],
-        tags: [],
+        likes:[1],
+        tags: ["#SopaDoMacao"],
         duration: 5
     },
 
@@ -169,8 +169,8 @@ const dataUser= [
         user: "631f454be01437a9620c315c",
         city: "630f9506cf288787d91694dd", 
         price: 505,
-        likes:[],
-        tags: [],
+        likes:[14],
+        tags: ["#Columna", "#Neymar"],
         duration: 2
     },
     {
@@ -178,8 +178,8 @@ const dataUser= [
         user: "631f454be01437a9620c315c",
         city: "630f9506cf288787d91694dd", 
         price: 250,
-        likes:[],
-        tags: [],
+        likes:[2],
+        tags: ["#Chile", "#Afori"],
         duration: 3
     },
     {
@@ -187,8 +187,8 @@ const dataUser= [
         user: "631f454be01437a9620c315c",
         city: "630f9506cf288787d91694dd", 
         price: 90,
-        likes:[],
-        tags: [],
+        likes:[1],
+        tags: ["#yaweon"],
         duration: 5
     }
 
