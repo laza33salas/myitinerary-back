@@ -1,8 +1,96 @@
 const User = require("../models/User")
 const crypto = require('crypto')//recurso propio de nodeJS para generar códigos aleatorios y unicos
 const bcryptjs = require('bcryptjs') //recurso propio de nodeJS para hashear contraseñas.
-const { response } = require('express')
 const sendMail = require('./sendMail')
+const Joi = require('joi')
+const validation = Joi.object({
+    name: Joi.string()
+    .required()
+    .min(4)
+    .max(20)
+    .messages({
+        'any.required': 'NAME_REQUIRED',
+        'string.empty': 'NAME_REQUIRED',
+        'string.min': 'NAME_TOO_SHORT',
+        'string.max': 'NAME_TOO_LARGE',
+    }),
+
+   lastName:Joi.string()
+   .required()
+    .min(4)
+    .max(20)
+    .messages({
+        'any.required': 'LASTNAME_REQUIRED',
+        'string.empty': 'LASTNAME_REQUIRED',
+        'string.min': 'LASTNAME_TOO_SHORT',
+        'string.max': 'LASTNAME_TOO_LARGE',
+    }),
+
+   mail:Joi.string()
+   .required()
+    .email({minDomainSegments:2})    
+    .messages({
+            'any.required': 'EMAIL_REQUIRED',
+            'string.empty': 'EMAIL_REQUIRED',
+            'string.email': 'INVALID_EMAIL'
+        }),
+
+   password: Joi.string()
+   .required()
+        .min(8)
+        .max(50)
+        .alphanum()
+        .messages({
+            'any.required': 'PASS_REQUIRED',
+            'string.empty': 'PASS_REQUIRED',
+            'string.min': 'PASS_TOO_SHORT',
+            'string.max': 'PASS_TOO_LARGE',
+            'string.alphanum': 'PASS_ALPHANUMERIC_REQUIRED',
+        }),
+   
+   photo: Joi.string()
+   .required()
+   .uri()
+   .messages({
+       'any.required': 'PHOTO_REQUIRED',
+       'string.empty': 'PHOTO_REQUIRED',
+       'string.uri':'INVALID_URL'
+   }),
+       
+   country: Joi.string()
+   .required()
+   .min(4)
+   .max(20)
+   .messages({
+            'any.required': 'COUNTRY_REQUIRED',
+            'string.empty': 'COUNTRY_REQUIRED',
+            'string.min': 'COUNTRY_TOO_SHORT',
+            'string.max': 'COUNTRY_TOO_LARGE',
+        }),
+  
+
+   role: Joi.any()
+   .required()
+   .valid('user', 'admin')
+   .messages({
+       'any.required': 'ROLE_REQUIRED',
+       'string.empty': 'ROLE_REQUIRED',
+       'any.only': 'ROLE_NOT_ALLOWED'
+   }),
+
+   from: Joi.string()
+   .required()
+   .messages({
+       'any.required': 'FROM_REQUIRED',
+       'string.empty': 'FROM_REQUIRED'
+   }), 
+   
+   logged: Joi.boolean(),
+   
+   verified:Joi.boolean() ,
+   
+   code: Joi.string(), 
+})
 
 const userController ={
     newUser: async(req, res) =>{
@@ -22,6 +110,8 @@ const userController ={
             })
         }  
     },
+
+
     readUsers: async(req, res) => {
         let query = {}
          let users 

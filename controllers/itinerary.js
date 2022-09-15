@@ -1,4 +1,71 @@
 const Itinerary = require("../models/Itinerary")
+const Joi = require('joi')
+const validator = Joi.object({
+"name" : Joi.string()
+        .required()
+        .min(4)
+        .max(50)
+        .messages({
+            'any.required': 'NAME_REQUIRED',
+            'string.empty': 'NAME_REQUIRED',
+            'string.min': 'NAME_TOO_SHORT',
+            'string.max': 'NAME_TOO_LARGE',
+        }),
+    
+    "price" : Joi.number()
+        .required()
+        .min(0)
+        .max(2000)
+        .messages({
+            'number.base': 'INVALID_PRICE',
+            'any.required': 'PRICE_REQUIRED',
+            'number.empty': 'PRICE_REQUIRED',
+            'number.min': 'INVALID_PRICE',
+            'number.max': 'PRICE_TOO_MUCH',
+        }),
+
+        "duration" : Joi.number()
+        .required()
+        .min(0)
+        .max(24)
+        .messages({
+            'number.base': 'INVALID_DURATION',
+            'any.required': 'DURATION_REQUIRED',
+            'number.empty': 'DURATION_REQUIRED',
+            'number.min': 'INVALID_DURATION',
+            'number.max': 'DURATION_TOO_MUCH',
+        }),
+
+        "likes": Joi.array()
+        .required()
+        .messages({
+            'any.required': 'LIKES_REQUIRED'
+        }),
+
+        "tags": Joi.array()
+        .required()
+        .messages({
+            'any.required': 'TAGS_REQUIRED',
+            
+        }),
+
+        "user": Joi.string()
+        .required()
+        .messages({
+            'any.required': 'USER_REQUIRED',
+            'string.empty': 'USER_REQUIRED',
+        }),
+
+        "city": Joi.string()
+        .required()
+        .min(4)
+        .max(20)
+        .messages({
+            'any.required': 'CITY_REQUIRED',
+            'string.empty': 'CITY_REQUIRED',
+        }),
+        })
+
 
 const itineraryController ={
     newItinerary: async(req, res) =>{

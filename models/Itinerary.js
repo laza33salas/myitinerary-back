@@ -5,8 +5,8 @@ const schema = new mongoose.Schema({
     user: {type: mongoose.Types.ObjectId, ref:'users'},
     city: {type: mongoose.Types.ObjectId,ref:"cities"},
     price: {type: Number, required: true},
-    likes: {type: Array, required: true},
-    tags: {type: Array, required: true},
+    likes: [{type: Number, required: true}],
+    tags: [{type: String, required: true}],
     duration: {type: Number, required: true}
 })
 
