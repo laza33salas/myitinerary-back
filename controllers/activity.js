@@ -8,11 +8,13 @@ const activityController={
            let activity = await new Activity(req.body).save()//req.body tiene que tener si o si todas las variables antes descriptas.
             res.status(201).json({
                 message: 'activity created',
-                success: true
+                success: true,
+                response: activity,
             }) 
         } catch(error) {
             res.status(400).json({
                 message: "coul't create activity",
+                
                 success: false
             })
         }
@@ -24,8 +26,9 @@ const activityController={
              query.itinerary = req.query.itinerary
          }
          try {
-            activities = await Activity.find(query)
             
+            activities = await Activity.find(query)           
+            .populate('itinerary',{name:1})
             if(activities){
                      res.status(200).json({
                          message: "You get all activities",
