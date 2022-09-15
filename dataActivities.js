@@ -2,6 +2,8 @@ require("dotenv").config()
 const db = require('./config/database')//Importamos DB
 const Activity = require('./models/Activity') //Importamos modelo
 
+
+
 const dataActivities = [
     {
         name: "Views from Victoria Peak",
@@ -23,3 +25,11 @@ const dataActivities = [
 
 
 ]
+
+dataActivities.forEach(data =>{
+    Activity.create({
+        name: data.name,
+        photo:data.photo,
+        itinerary:data.itinerary
+    })
+})
