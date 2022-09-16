@@ -327,20 +327,22 @@ const userController = {
     //findOneAndUpdate y cambiar logged de true a false.
     signOut: async (req, res) => {
         const { mail } = req.body
+
         try {
-            const user = await User.find({ mail: mail })
-            if (!user) { //Si usuario no existe
-                res.status(404).json({
-                    success: false,
-                    message: "User is not logged, please sign in."
-                })
-            } else {
-                logged = false
+            const user = await User.findOne({ mail: mail })
+            if (user) { 
+                user.logged = false
                 await user.save()
                 res.status(200).json({
                     success: true,
                     response: user.logged,
                     message: 'Good bye' + user.name
+                })
+                
+            } else { //Si usuario no logged
+                res.status(404).json({
+                    success: false,
+                    message: "User is not logged, please sign in."
                 })
             }
         } catch (error) {
