@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-const{newUser, readUsers} = require('../controllers/users')
+const{newUser, readUsers,signUp, verifyMail,signIn} = require('../controllers/users')
 
 
 router.get('/', function(req, res, next) {
@@ -9,6 +9,10 @@ router.get('/', function(req, res, next) {
 }); 
 router.post('/', newUser)
 router.get('/', readUsers)
+
+router.post('/signup', signUp)
+router.post('/signin', signIn);
+router.get('/verify/:code', verifyMail)
 
 
 module.exports = router;
