@@ -145,11 +145,13 @@ const userController ={
 
 
 
-     signUp: async(req,red) => {
+     signUp: async(req,res) => {
         const {
             name,
             photo,
             mail,
+            lastName,
+            country,
             password,
             role, //tiene que venir del front para usar este metodo para ambos casos (user y admin).
             from //el from tiene que venir desde el front para avisarle al método desde donde se crea el usuario.
@@ -167,7 +169,7 @@ const userController ={
         
                 if(from==='form'){ //Si la data viene del formulario de registro
                     pass = bcryptjs.hashSync(password,10) //hashSync que requiere 2 parametros
-                    user = await new User({name, photo, mail, password:[password], role, from:[from], logged, verified, code}).save()
+                    user = await new User({name, photo, mail,lastName,country, password:[password], role, from:[from], logged, verified, code}).save()
                     sendMail(mail,code)
                     //Hay que incorporar la función para el envio de mail de verificacion
                     res.status(201).json({
@@ -177,7 +179,7 @@ const userController ={
                 } else { //si viene desde redes sociales (cualquier red social)
                     pass = bcryptjs.hashSync(password,10) //hashSync que requiere 2 parametros
                     verified = true
-                    user = await new User({name, photo, mail, password:[password], role, from:[from], logged, verified, code}).save()
+                    user = await new User({name, photo, mail,lastName,country, password:[password], role, from:[from], logged, verified, code}).save()
                     //No hace falta enviar el mail de verificacion.
                     res.status(201).json({
                         message: "user signed up from"+from,
