@@ -71,7 +71,7 @@ const itineraryController ={
     newItinerary: async(req, res) =>{
         //const {name, image, date, description, category, place, capacity, assistance, stimated, price} = req.body
         try{
-            console.log(req.body)
+            let result = await validation.validateAsync(req.body)
            let itinerary = await new Itinerary(req.body).save()//req.body tiene que tener si o si todas las variables antes descriptas.
             res.status(201).json({
                 message: 'itinerary created',
