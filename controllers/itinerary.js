@@ -1,6 +1,6 @@
 const Itinerary = require("../models/Itinerary")
 const Joi = require('joi')
-const validator = Joi.object({
+const validation = Joi.object({
 "name" : Joi.string()
         .required()
         .min(4)
