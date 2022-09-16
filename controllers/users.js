@@ -96,7 +96,7 @@ const userController ={
     newUser: async(req, res) =>{
         //const {name, image, date, description, category, place, capacity, assistance, stimated, price} = req.body
         try{
-            console.log(req.body)
+            let result = await validation.validateAsync(req.body)
            let user = await new User(req.body).save()//req.body tiene que tener si o si todas las variables antes descriptas.
             res.status(201).json({
                 message: 'user created',
@@ -145,9 +145,11 @@ const userController ={
 
 
 
-     signUp: async(req,red) => {
+     signUp: async(req,res) => {
         const {
             name,
+            country,
+            lastName,
             photo,
             mail,
             password,
@@ -167,7 +169,7 @@ const userController ={
         
                 if(from==='form'){ //Si la data viene del formulario de registro
                     pass = bcryptjs.hashSync(password,10) //hashSync que requiere 2 parametros
-                    user = await new User({name, photo, mail, password:[password], role, from:[from], logged, verified, code}).save()
+                    user = await new User({name, photo, mail,country,lastName, password:[password], role, from:[from], logged, verified, code}).save()
                     sendMail(mail,code)
                     //Hay que incorporar la función para el envio de mail de verificacion
                     res.status(201).json({
@@ -177,7 +179,7 @@ const userController ={
                 } else { //si viene desde redes sociales (cualquier red social)
                     pass = bcryptjs.hashSync(password,10) //hashSync que requiere 2 parametros
                     verified = true
-                    user = await new User({name, photo, mail, password:[password], role, from:[from], logged, verified, code}).save()
+                    user = await new User({name, photo, mail,country,lastName, password:[password], role, from:[from], logged, verified, code}).save()
                     //No hace falta enviar el mail de verificacion.
                     res.status(201).json({
                         message: "user signed up from"+from,
@@ -317,9 +319,89 @@ const userController ={
     }
 
 },
+//findOneAndUpdate y cambiar logged de true a false.
+signOut:async() => {
+    const {mail, password, from} = req.body
 
+    try{
+        const user = await user.findOneAndUpdate({mail})
+        if(!user){ //Si usuario no existe
+            res.status(404).json({
+                success: false,
+                message: "User dosen't exist, please sign up."
+            })
+        } else if(user.verified){ //Si usuario existe y esta verificado
+            const checkPass = user.password.filter(passwordElement => bcryptjs.compareSync(password, passwordElement))
+            if(from == 'form'){ //Si el usuario intente ingresar por FORM
+                if(checkPass.length > 0){ //Contraseña coincide
+                   
+                    const loginUser = {
+                        id: user._id,
+                        name: user.name,
+                        mail: user.mail,
+                        role: user.role,
+                        from: user.from,
+                        photo: user.photo
+                    }
+                   
+                    user.logged = true
+                    await user.save()
 
-signOut:async() => {}//findOneAndUpdate y cambiar logged de true a false.
+                    res.status(200).json({
+                        success: true,
+                        response: {user: loginUser},
+                        message: 'Welcome ' + user.name
+                    })
+
+                } else { //Contraseña no coincide
+                    res.status(400).json({
+                        success: false,
+                        message: 'Username or password incorrect'
+                    })
+                }
+            } else { //Si el usuario intenta ingresar por RRSS
+                if(checkPass.length > 0){ //Contraseña coincide
+                   
+                    const loginUser = {
+                        id: user._id,
+                        name: user.name,
+                        mail: user.mail,
+                        role: user.role,
+                        from: user.from,
+                        photo: user.photo
+                    }
+                   
+                    user.logged = false
+                    await user.save()
+
+                    res.status(200).json({
+                        success: true,
+                        response: {user: loginUser},
+                        message: 'Welcome ' + user.name
+                    })
+
+                } else { //Contraseña no coincide
+                    res.status(400).json({
+                        success: false,
+                        message: 'Username or password incorrect'
+                    })
+                }
+            }
+        } else { //Usuario existe pero no esta verificado.
+            res.status(401).json({
+                success: false,
+                message: 'Please, verify your email account and try again'
+            })
+        }
+    } catch(error){
+        console.log(error)
+        res.status(400).json({
+            success: false,
+            message: 'Sign in ERROR, please try again.'
+        })
+    }
+
+}
     }
 
 
