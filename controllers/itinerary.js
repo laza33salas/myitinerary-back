@@ -177,7 +177,51 @@ const itineraryController ={
             })
       }
 
+    },
+    //logica del controlador 
+    //si el usuario quiero likear
+    //agregar id del usuario al array de like
+    //si el usuario quiere quitar el like
+    //sacar el array el id del usuario
+    likeDislike: async(req, res) => {
+        //id del usuario que va a dar/quitar like
+        //desesctructuro de la request el objeto user configurado en passport
+        let { id } = req.user
+        //itinerario que se quiere dar/quitar like 
+        //desestructuro el body /mas abajo esta el ejemplo con params)
+        let { itineraryId } = req.body
+        try {
+            let itinerary = Event.findOne({_id:itineraryId})
+            //si encuentra el evento: armo la logica de likes
+            if (itinerary && itinerary.likes.includes(id)) {
+                itinerary.likes.pull(id)
+                await itinerary.save()
+                res.status(200).json({
+                    message: "Itinerary disliked",
+                    success: true
+                })
+            } else if (!itinerary.likes.includes(id)){
+                itinerary.likes.push(id)
+                await itinerary.save()
+                res.status(200).json({
+                    message: "Itinerary liked",
+                    success: true
+            })
+        } else {
+            res.status(404).json({
+                message: "Itinerary not found",
+                success: false
+            })
+        }
+            //si no lo encuentro retorno un json
+        } catch(error) {
+            console.log(error)
+            res.status(400).json({
+            message: "error",
+            success: false
+        })
     }
+    },
 }
 
 module.exports = itineraryController
