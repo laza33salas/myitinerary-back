@@ -9,7 +9,7 @@ const{
     verifyMail,
     signIn, 
     signOut,
-    verifyToken
+    signInToken
 } = require('../controllers/users')
 
 
@@ -22,7 +22,7 @@ router.post('/logout', signOut)
 router.post('/signup', signUp)
 router.post('/signin', signIn);
 router.get('/verify/:code', verifyMail)
-router.get('/token', passport.authenticate('jwt',{session:false}), verifyToken)
+router.get('/token', passport.authenticate('jwt',{session:false}), signInToken)
 
 
 module.exports = router;

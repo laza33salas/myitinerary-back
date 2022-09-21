@@ -25,7 +25,7 @@ passport.use(//Usar y configuar el pasaporte
         async (jwt_payload, done) => { //funcion asincrona que maneja como llega el dato decodificado al controlador
             //console.log(jwt_payload)
             try {
-                let user = await User.findOne({ _ido: jwt_payload.id })
+                let user = await User.findOne({ _id: jwt_payload.id })
                 //console.log(user)
                 if (user) {
                     user = {
@@ -37,7 +37,7 @@ passport.use(//Usar y configuar el pasaporte
                     }
                     return done(null, user)//Si tiene exito con la autenticacion me envia al controlador, los datos del objeto user
                 } else {
-                    return done(null, false)
+                    return done(null, false) //null manejo del error, false manejo de la info.
                 }
             } catch (error) {
                 console.log(error)
@@ -45,4 +45,6 @@ passport.use(//Usar y configuar el pasaporte
             }
         }
     )
-) //export???
+) 
+
+module.exports = passport
