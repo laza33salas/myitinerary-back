@@ -3,6 +3,7 @@ const crypto = require('crypto')//recurso propio de nodeJS para generar códigos
 const bcryptjs = require('bcryptjs') //recurso propio de nodeJS para hashear contraseñas.
 const sendMail = require('./sendMail')
 const Joi = require('joi')
+const jwt = require('jsonwebtoken')
 const validation = Joi.object({
     name: Joi.string()
         .required()
@@ -242,10 +243,14 @@ const userController = {
     },
 
     signIn: async (req, res) => {
-        const { mail, password, from } = req.body
-
+        const {
+            mail,
+            password
+        } = req.body
         try {
-            const user = await User.findOne({ mail })
+            const user = await User.findOne({
+                mail
+            })
             if (!user) { //Si usuario no existe
                 res.status(404).json({
                     success: false,
@@ -253,62 +258,40 @@ const userController = {
                 })
             } else if (user.verified) { //Si usuario existe y esta verificado
                 const checkPass = user.password.filter(passwordElement => bcryptjs.compareSync(password, passwordElement))
-                if (from == 'form') { //Si el usuario intente ingresar por FORM
-                    if (checkPass.length > 0) { //Contraseña coincide
-
-                        const loginUser = {
-                            id: user._id,
-                            name: user.name,
-                            mail: user.mail,
-                            role: user.role,
-                            from: user.from,
-                            photo: user.photo
-                        }
-
-                        user.logged = true
-                        await user.save()
-
-                        res.status(200).json({
-                            success: true,
-                            response: { user: loginUser },
-                            message: 'Welcome ' + user.name
-                        })
-
-                    } else { //Contraseña no coincide
-                        res.status(400).json({
-                            success: false,
-                            message: 'Username or password incorrect'
-                        })
+                if (checkPass.length > 0) { //Contraseña coincide
+                    user.logged = true
+                    await user.save()
+                    const loginUser = {
+                        id: user._id,
+                        name: user.name,
+                        mail: user.mail,
+                        role: user.role,
+                        from: user.from,
+                        photo: user.photo
                     }
-                } else { //Si el usuario intenta ingresar por RRSS
-                    if (checkPass.length > 0) { //Contraseña coincide
-
-                        const loginUser = {
+                    const token = jwt.sign(
+                        {
                             id: user._id,
-                            name: user.name,
-                            mail: user.mail,
-                            role: user.role,
-                            from: user.from,
-                            photo: user.photo
-                        }
-
-                        user.logged = true
-                        await user.save()
-
-                        res.status(200).json({
-                            success: true,
-                            response: { user: loginUser },
-                            message: 'Welcome ' + user.name
-                        })
-
-                    } else { //Contraseña no coincide
-                        res.status(401).json({
-                            success: false,
-                            message: 'Username or password incorrect'
-                        })
-                    }
+                            role: user.role
+                        }, //la data que quiero codificar
+                        process.env.KEY_JWT, //la clave de validacion
+                        { expiresIn: 60 * 60 * 24 } //el tiempo de expiracion en segundos
+                    )
+                    res.status(200).json({
+                        success: true,
+                        response: {
+                            user: loginUser,
+                            token: token
+                        },
+                        message: 'Welcome ' + user.name
+                    })
+                } else { //Contraseña no coincide
+                    res.status(401).json({
+                        success: false,
+                        message: 'Username or password incorrect'
+                    })
                 }
-            } else { //Usuario existe pero no esta verificado.
+            } else {
                 res.status(401).json({
                     success: false,
                     message: 'Please, verify your email account and try again'
@@ -318,10 +301,26 @@ const userController = {
             console.log(error)
             res.status(400).json({
                 success: false,
-                message: 'Sign in ERROR, please try again.'
+                message: 'Sign in ERROR, try again later'
             })
         }
 
+    },
+
+    signInToken:(req, res) => {
+        if (req.user!==null) {            
+            res.status(200).json({
+                success: true,
+                response: {
+                    user: req.user
+                },
+                message: 'Welcome ' + req.user.name+'!'
+            })
+        } else {
+            res.json({
+                success:false,
+                message:"sign in please!"}) 
+        }
     },
 
     //findOneAndUpdate y cambiar logged de true a false.
@@ -330,7 +329,7 @@ const userController = {
 
         try {
             const user = await User.findOne({ mail: mail })
-            if (user) { 
+            if (user) {
                 user.logged = false
                 await user.save()
                 res.status(200).json({
@@ -338,7 +337,7 @@ const userController = {
                     response: user.logged,
                     message: 'Good bye' + user.name
                 })
-                
+
             } else { //Si usuario no logged
                 res.status(404).json({
                     success: false,
@@ -352,6 +351,7 @@ const userController = {
             })
         }
     }
+
 }
 
 
