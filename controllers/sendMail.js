@@ -12,7 +12,7 @@ const sendMail = async(mail, code) => {
         GOOGLE_URL
     )
         client.setCredentials({
-            refresh_token: process.env.GOOGLE_REFRESH
+            refresh_token: GOOGLE_REFRESH
         })
 
         const accessToken = client.getAccessToken()
