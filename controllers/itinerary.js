@@ -91,18 +91,12 @@ const itineraryController = {
         if (req.query.city) {
             query.city = req.query.city
         }
-
-
         if (req.query.user) {
             query.user = req.query.user
         }
-
-
-
         try {
             itineraries = await Itinerary.find(query)
                 .populate('city', { city: 1, })
-
             if (itineraries) {
                 res.status(200).json({
                     message: "You get all itineraries",
@@ -114,7 +108,6 @@ const itineraryController = {
                     message: "Could't find itineraries"
                 })
             }
-
         }
         catch (error) {
             console.log(error)
