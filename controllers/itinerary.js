@@ -1,7 +1,7 @@
 const Itinerary = require("../models/Itinerary")
 const Joi = require('joi')
 const validation = Joi.object({
-"name" : Joi.string()
+    "name": Joi.string()
         .required()
         .min(4)
         .max(50)
@@ -11,8 +11,8 @@ const validation = Joi.object({
             'string.min': 'NAME_TOO_SHORT',
             'string.max': 'NAME_TOO_LARGE',
         }),
-    
-    "price" : Joi.number()
+
+    "price": Joi.number()
         .required()
         .min(0)
         .max(2000)
@@ -24,7 +24,7 @@ const validation = Joi.object({
             'number.max': 'PRICE_TOO_MUCH',
         }),
 
-        "duration" : Joi.number()
+    "duration": Joi.number()
         .required()
         .min(0)
         .max(24)
@@ -36,27 +36,27 @@ const validation = Joi.object({
             'number.max': 'DURATION_TOO_MUCH',
         }),
 
-        "likes": Joi.array()
+    "likes": Joi.array()
         .required()
         .messages({
             'any.required': 'LIKES_REQUIRED'
         }),
 
-        "tags": Joi.array()
+    "tags": Joi.array()
         .required()
         .messages({
             'any.required': 'TAGS_REQUIRED',
-            
+
         }),
 
-        "user": Joi.string()
+    "user": Joi.string()
         .required()
         .messages({
             'any.required': 'USER_REQUIRED',
             'string.empty': 'USER_REQUIRED',
         }),
 
-        "city": Joi.string()
+    "city": Joi.string()
         .required()
         .min(4)
         .max(20)
@@ -64,74 +64,74 @@ const validation = Joi.object({
             'any.required': 'CITY_REQUIRED',
             'string.empty': 'CITY_REQUIRED',
         }),
-        })
+})
 
 
-const itineraryController ={
-    newItinerary: async(req, res) =>{
+const itineraryController = {
+    newItinerary: async (req, res) => {
         //const {name, image, date, description, category, place, capacity, assistance, stimated, price} = req.body
-        try{
-            let result = await validation.validateAsync(req.body)
-           let itinerary = await new Itinerary(req.body).save()//req.body tiene que tener si o si todas las variables antes descriptas.
+        try {
+            await validation.validateAsync(req.body, { abortEarly: false })
+            let itinerary = await new Itinerary(req.body).save()//req.body tiene que tener si o si todas las variables antes descriptas.
             res.status(201).json({
                 message: 'itinerary created',
                 response: itinerary._id,
                 success: true
-            }) 
-        } catch(error) {
+            })
+        } catch (error) {
             res.status(400).json({
                 message: "coul't create Itinerary",
                 success: false
             })
         }
     },
-    readItineraries: async(req, res) => {
+    readItineraries: async (req, res) => {
         let query = {}
-         let itineraries 
-         if (req.query.city) {
-             query.city = req.query.city
-         }
+        let itineraries
+        if (req.query.city) {
+            query.city = req.query.city
+        }
 
 
-         if(req.query.user){
+        if (req.query.user) {
             query.user = req.query.user
-         }
+        }
 
 
 
-         try {
+        try {
             itineraries = await Itinerary.find(query)
-            .populate('city', {city:1,})
-            
-            if(itineraries){
-                     res.status(200).json({
-                         message: "You get all itineraries",
-                          response: itineraries,
-                         success: true
-                      })
-                 }else{
-                     res.status(404).json({
-                         message:"Could't find itineraries"
-                     })
-                 }
- 
-             } 
-              catch(error) {
-                 console.log(error)
-                 res.status(500).json({
-                 message: "error",
-                 success: false
-             })
-       }
-     },
+                .populate('city', { city: 1, })
 
-     updateItinerary: async(req,res) =>{
-        const {id} = req.params
+            if (itineraries) {
+                res.status(200).json({
+                    message: "You get all itineraries",
+                    response: itineraries,
+                    success: true
+                })
+            } else {
+                res.status(404).json({
+                    message: "Could't find itineraries"
+                })
+            }
+
+        }
+        catch (error) {
+            console.log(error)
+            res.status(500).json({
+                message: "error",
+                success: false
+            })
+        }
+    },
+
+    updateItinerary: async (req, res) => {
+        const { id } = req.params
         const itinerary = req.body
         let itineraryChange
-        try{
-            itineraryChange = await Itinerary.findOneAndUpdate({_id:id}, itinerary, {new:true})
-            if(itineraryChange){
+        try {
+            itineraryChange = await Itinerary.findOneAndUpdate({ _id: id }, itinerary, { new: true })
+            if (itineraryChange) {
                 res.status(200).json({
                     message: "itinerary modifed",
                     response: itineraryChange,
@@ -141,9 +141,9 @@ const itineraryController ={
                 res.status(404).json({
                     message: "could't find itinerary",
                     success: false
-                 })
+                })
             }
-        }catch(error){
+        } catch (error) {
             console.log(error)
             res.status(400).json({
                 message: "error",
@@ -152,30 +152,60 @@ const itineraryController ={
         }
     },
 
-    removeItinerary: async(req, res) => {
-        const {id} = req.params
+    removeItinerary: async (req, res) => {
+        const { id } = req.params
         try {
-            let itinerary = await Itinerary.findOneAndDelete({_id:id})
-            if(itinerary){
+            let itinerary = await Itinerary.findOneAndDelete({ _id: id })
+            if (itinerary) {
                 res.status(200).json({
                     message: "You delete one itinerary",
-                     response: itinerary,
+                    response: itinerary,
                     success: true
-                 })
+                })
             } else {
                 res.status(404).json({
                     message: "could't find itinerary",
                     success: false
-                 })
+                })
 
             }
-          } catch(error) {
-                console.log(error)
-                res.status(400).json({
+        } catch (error) {
+            console.log(error)
+            res.status(400).json({
                 message: "error",
                 success: false
             })
-      }
+        } nt
+
+    },
+
+    like: async (req, res) => {
+        let { id } = req.params
+        let userId = req.user.id
+        try {
+            let itinerary = await Itinerary.findOne({ _id: id })
+            if (itinerary.likes.includes(userId)) {
+                itinerary.likes.pull(userId)
+                await itinerary.save()
+                res.status(200).json({
+                    message: "Itinerary disliked",
+                    success: true
+                })
+            } else { 
+                itinerary.likes.push(userId)
+                await itinerary.save()
+                res.status(200).json({
+                    message: "itinerary liked",
+                    success: true
+                })
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(400).json({
+                message: "error",
+                success: false
+            })
+        }
 
     }
 }
