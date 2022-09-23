@@ -12,6 +12,8 @@ const schema = new mongoose.Schema({
     foundation: {type: Date, required: true},
     
     population: {type: Number, required: true},
+
+    location: {type:Object, required: true}
   
 })
 
