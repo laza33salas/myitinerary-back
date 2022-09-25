@@ -176,10 +176,23 @@ describe("GET /itineraries/users", ()=>{
                     if (err) return done(err)
                                 return done()
                 })
-        })
+        }),
 
- 
+        
+    it("Must respond with user", (done)=>{
+        request(app)
+            .get('/users/632b9b9507fd0a06a95b596d')
+            .expect(200)
+            .end((err, res)=>{
+                if (err) return done(err)
+                            return done()
+            })
+    })
 })
+
+
+
+
 
 
 
