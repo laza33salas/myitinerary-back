@@ -177,15 +177,15 @@ const itineraryController = {
         let userId = req.user.id
         try {
             let itinerary = await Itinerary.findOne({ _id: id })
-            if (itinerary.likes.includes(userId)) {
-                itinerary.likes.pull(userId)
+            if (itinerary.likes.includes(userId)) { //Estaba el id dentro del array de likes
+                itinerary.likes.pull(userId) //Dislike
                 await itinerary.save()
                 res.status(200).json({
                     message: "Itinerary disliked",
                     success: true
                 })
-            } else { 
-                itinerary.likes.push(userId)
+            } else { //No estaba el id dentro del array de likes
+                itinerary.likes.push(userId) //Like
                 await itinerary.save()
                 res.status(200).json({
                     message: "itinerary liked",
@@ -195,7 +195,7 @@ const itineraryController = {
         } catch (error) {
             console.log(error)
             res.status(400).json({
-                message: "error",
+                message: "error please logIn",
                 success: false
             })
         }

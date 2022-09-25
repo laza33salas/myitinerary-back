@@ -5,6 +5,7 @@ let passport = require('../config/passport')
 const{
     newUser, 
     readUsers,
+    read,
     signUp,
     verifyMail,
     signIn, 
@@ -18,6 +19,7 @@ const{
 //}); 
 router.post('/', newUser)
 router.get('/', readUsers)
+router.get('/:id', read)
 router.post('/logout', signOut)
 router.post('/signup', signUp)
 router.post('/signin', signIn);
