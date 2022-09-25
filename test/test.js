@@ -7,8 +7,6 @@ const app = require('../server') //server.js
 const {assert} = require('chai')
 
 
-
-
 //con mocha hacemos todo el proceso de ejecucion de los test
 //npm install --save-dev mocha 
 //nos trae describe e it
@@ -31,8 +29,8 @@ const {assert} = require('chai')
 //     })
 
 
-// //npm install chai
-// //con chai adentro de ese test verificar alguna cosa concreta a traves de una comparacion
+// npm install chai
+// con chai adentro de ese test verificar alguna cosa concreta a traves de una comparacion
 // it('Must respond with the id', function(done) {
 //     request(app)
 //     .post('/cities')
@@ -65,66 +63,123 @@ const {assert} = require('chai')
 // })
 
 
-describe("POST /users/signup", () => {
-        it("must respond with User already exists...", (done) => {
+// describe("POST /users/signup", () => {
+//         it("must respond with User already exists...", (done) => {
+//             request(app)
+//             .post("/users/signup")
+//                 .send({
+//                     name: "nameExample",
+//                     lastName: "LastExample",
+//                     photo: "http://pm1.narvii.com/6498/1a02c1a91d34a9a472841d4084095facab2d6fb4_00.jpg",
+//                     country: "World",
+//                     email: "bestpinkoctopus@notanexample.com",
+//                     password: "h31d",
+//                     role: "user",
+//                     from: "example"
+//                 })
+//             .expect(200)
+//             .end((err, res)=>{
+//                 if (err) return done(err)
+//                 console.log(res.body.message)
+//                 return done()
+//             })
+//         })
+//         it("must respond with Invalid email", (done) => {
+//             request(app)
+//             .post("/users/signup")
+//                 .send({
+//                     name: "nameExample",
+//                     lastName: "LastExample",
+//                     photo: "http://pm1.narvii.com/6498/1a02c1a91d34a9a472841d4084095facab2d6fb4_00.jpg",
+//                     country: "World",
+//                     email: "bestpinkoctopus.notanexample.com",
+//                     password: "h31d",
+//                     role: "user",
+//                     from: "example"
+//                 })
+//             .expect(400)
+//             .end((err, res)=>{
+//                 if (err) return done(err)
+//                 return done()
+//             })
+//         })
+//         it("must respond with invalid password", (done) => {
+//             request(app)
+//             .post("/users/signup")
+//                 .send({
+//                     name: "nameExample",
+//                     lastName: "LastExample",
+//                     photo: "http://pm1.narvii.com/6498/1a02c1a91d34a9a472841d4084095facab2d6fb4_00.jpg",
+//                     country: "World",
+//                     email: "example@notanexample.com",
+//                     password: "a",
+//                     role: "user",
+//                     from: "example"
+//                 })
+//             .expect(400)
+//             .end((err, res)=>{
+//                 if (err) return done(err)
+//                 return done()
+//             })
+//         })
+//     })
+
+//--------------------------------------------------------------------------------------------------------------------
+//PUT
+let token
+// describe("PUT /itineraries/:id", ()=>{
+//     it("Must respond with You have updated an itinerary.", (done)=>{
+//         request(app)
+//             .put('/itineraries/6321e5609ed8e659adb4d69c')
+//             .send({
+//                 name: "Harry Potter",
+//                 price: 700,
+//             })
+//             .set({"Authorization": "Bearer " + token})
+//             .expect(200)
+//             .then((res) => {
+//                 assert.isObject(res.body.response)
+//                 done()
+//             })
+//     })
+// }),
+//----------------------------------------------------------------------------------------------
+// describe("POST /users/signin", ()=>{
+//     it("Must respond with user signed in", (done)=>{
+//         request(app)
+//             .post('/users/signin')
+//             .send({
+//                 mail: "serehokage@gmail.com",
+//                 password : "sasuke",
+//                 from: "form"
+//                 })
+//             .expect(200)
+//             .then((res) => {
+//                 console.log(res.body.message)
+//                 token = res.body.response.token
+//                 done()
+//             })
+//     })
+
+// })
+//----------------------------------------------------------------------------------------
+//GET
+
+describe("GET /itineraries/users", ()=>{
+
+    it("Must respond with all itineraries", (done)=>{
             request(app)
-            .post("/users/signup")
-                .send({
-                    name: "nameExample",
-                    lastName: "LastExample",
-                    photo: "http://pm1.narvii.com/6498/1a02c1a91d34a9a472841d4084095facab2d6fb4_00.jpg",
-                    country: "World",
-                    email: "bestpinkoctopus@notanexample.com",
-                    password: "h31d",
-                    role: "user",
-                    from: "example"
+                .get('/itineraries')
+                
+                .expect(200)
+                .end((err, res)=>{
+                    if (err) return done(err)
+                                return done()
                 })
-            .expect(200)
-            .end((err, res)=>{
-                if (err) return done(err)
-                console.log(res.body.message)
-                return done()
-            })
         })
-        it("must respond with Invalid email", (done) => {
-            request(app)
-            .post("/users/signup")
-                .send({
-                    name: "nameExample",
-                    lastName: "LastExample",
-                    photo: "http://pm1.narvii.com/6498/1a02c1a91d34a9a472841d4084095facab2d6fb4_00.jpg",
-                    country: "World",
-                    email: "bestpinkoctopus.notanexample.com",
-                    password: "h31d",
-                    role: "user",
-                    from: "example"
-                })
-            .expect(400)
-            .end((err, res)=>{
-                if (err) return done(err)
-                return done()
-            })
-        })
-        it("must respond with invalid password", (done) => {
-            request(app)
-            .post("/users/signup")
-                .send({
-                    name: "nameExample",
-                    lastName: "LastExample",
-                    photo: "http://pm1.narvii.com/6498/1a02c1a91d34a9a472841d4084095facab2d6fb4_00.jpg",
-                    country: "World",
-                    email: "example@notanexample.com",
-                    password: "a",
-                    role: "user",
-                    from: "example"
-                })
-            .expect(400)
-            .end((err, res)=>{
-                if (err) return done(err)
-                return done()
-            })
-        })
-    })
+
+ 
+})
 
 
 
