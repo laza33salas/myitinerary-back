@@ -10,7 +10,9 @@ const dataCiudad = [
         city: "Hong Kong",
         country: "China",
         description: "Hong Kong is a country in southern China and the Pearl River Delta. The small state has a total area of ​​1,110 km² and a total coastline of 733 km. This area is approximately 0.7 the size of Mexico City. This makes Hong Kong one of the smallest countries in Asia and 187th in the world.",
-        foundation: 1842, population: 7482000
+        foundation: 1842, 
+        population: 7482000,
+        location: {lat:22.30929,lng:114.16337}
     },
 
     {
@@ -18,7 +20,9 @@ const dataCiudad = [
         city: "Bangkok",
         country: "Thailand",
         description: 'Bangkok means "village of the wild plum" and is the city of a part of the Thon Buri river side. Thus, Bangkok is known as Krung Thep Mahanakhon. It was a small trading post at the mouth of the Chao Phraya River during the Ayutthaya kingdom.'
-        , foundation: 1972, population: 10539000
+        , foundation: 1972, 
+        population: 10539000,
+        location: {lat:13.850367708952804, lng:100.51407451304317}
     },
 
     {
@@ -26,7 +30,9 @@ const dataCiudad = [
         city: "Singapore",
         country: "Singapore",
         description: "Boundaries: Singapore is made up of a main island and 64 smaller islands. It is bordered to the north by the Strait of Johor, which separates it from Malaysia. To the southwest it borders the Malacca Strait, which separates it from Indonesia. The closest coasts to the south are those of Sumatra (Indonesia)."
-        , foundation: 1965, population: 5686000
+        , foundation: 1965, 
+        population: 5686000,
+        location: {lat:1.3524260818005762, lng:103.8620671436587}
     },
 
     {
@@ -34,7 +40,9 @@ const dataCiudad = [
         city: "London",
         country: "England",
         description: "London, located in the south-west of England, is the most important city from the political, economic and demographic point of view in the United Kingdom."
-        , foundation: 47, population: 8982000
+        , foundation: 47, 
+        population: 8982000,
+        location: {lat:51.53536007451055,lng: -0.09133975690428163}
     },
 
     {
@@ -42,7 +50,9 @@ const dataCiudad = [
         city: "Paris",
         country: "France",
         description: "Paris, one of the most beautiful cities in the world, seduces first of all by its exceptional architectural and cultural heritage. A living heritage, which continues to modernize and enrich itself. Paris is also the capital of gastronomy, fashion and shopping; a city where something always happens."
-        , foundation: -52, population: 2161000
+        , foundation: -52, 
+        population: 2161000,
+        location: {lat:48.856059395765485, lng:3463427650658266}
     },
 
     {
@@ -50,7 +60,9 @@ const dataCiudad = [
         city: "Macau",
         country: "China",
         description: "Macau is a small port city on the southern coast of China, close to Guangzhou and only about 65 km from Hong Kong. It was leased to Portugal in 1557 and officially became a colony of the Portuguese Empire in 1887."
-        , foundation: 1842, population: 649342
+        , foundation: 1842, 
+        population: 649342,
+        location: {lat:22.271325610787397,lng :113.58124519654494}
     },
 
     {
@@ -58,7 +70,9 @@ const dataCiudad = [
         city: "New York",
         country: "EEUU",
         description: "It is the most populous city in the State of New York, in the United States of America, and the second largest urban agglomeration on the continent. It is the center of the New York metropolitan area, which is among the five largest urban agglomerations in the world."
-        , foundation: 1624, population: 8380000
+        , foundation: 1624, 
+        population: 8380000,
+        location: {lat:40.75035723270218, lng:-74.00465631364584}
     },
 
     {
@@ -66,7 +80,8 @@ const dataCiudad = [
         city: "Rome",
         country: "Italy",
         description: "Rome is an Italian city, capital of the Lazio region and of Italy. With a population of 2,815,951 inhabitants, it is the most populous municipality in Italy and the third most populous city in the European Union. Par excellence, it has been known since ancient times as the Urbe (Urbs)."
-        , foundation: 753, population: 2873000
+        , foundation: 753, population: 2873000,
+        location: {lat:41.895063332548276, lng:12.58921030921528}
     },
 
     {
@@ -74,7 +89,8 @@ const dataCiudad = [
         city: "Kuala Lumpur",
         country: "Malaysia",
         description: "In general, Kuala Lumpur is abbreviated as KL in Malaysia, and is globally known for being the location of the Petronas Twin Towers, currently the world's tallest twin buildings and formerly the world's tallest buildings outright."
-        , foundation: 1995, population: 1808000
+        , foundation: 1995, population: 1808000,
+        location: {lat:3.139828504141977, lng:101.69131168587079}
     },
 
     {
@@ -82,7 +98,8 @@ const dataCiudad = [
         city: "Antalya",
         country: "Turkey",
         description: "Antalya (formerly known as Adalia, from the Greek pamphylian: Αττάλεια Attália) is a city located on the Mediterranean coast of southwestern Turkey. It is the capital of the province of Antalya and gives its city to one of the largest gulfs on the Turkish coast, the Gulf of Antalya."
-        , foundation: 200, population: 1300000
+        , foundation: 200, population: 1300000,
+        location: {lat:36.922909321468246, lng:30.762863568553648}
     },
 
     {
@@ -90,7 +107,8 @@ const dataCiudad = [
         city: "Istanbul",
         country: "Turkey",
         description: "Istanbul, in Turkish İstanbul, is the largest city in Turkey and one of the largest cities in Europe. It is also the administrative capital of the Province of Istanbul, one of the 81 into which Turkey is divided. It is divided by the Bosphorus Strait into two parts, one in Asia and the other in Europe."
-        , foundation: 660, population: 15460000
+        , foundation: 660, population: 15460000,
+        location: {lat:41.050666188910554,lng: 28.938903471408903}
     },
 
     {
@@ -98,21 +116,23 @@ const dataCiudad = [
         city: "Dubai",
         country: "United Arab Emirates",
         description: "Dubai is the largest and most famous city in the United Arab Emirates, followed by Abu Dhabi, the capital of the Emirates. It is located in the Persian Gulf, between Sharjah and Abu Dhabi. * Also known as the city of Dubai, it is divided by Dubai Creek, a saltwater gap that bisects the city."
-        , foundation: 1833, population: 3331000
+        , foundation: 1833, population: 3331000,
+        location: {lat:25.355893903944015, lng:55.287194083152855}
     },
 ]
 
-for (let i = 0; i < dataCiudad.length; i++) {
+dataCiudad.forEach(dato =>{
     City.create({
-        city: dataCiudad.city,
-        photo: dataCiudad.photo,
-        country: dataCiudad.country,
-        description: dataCiudad.description,
-        foundation: dataCiudad.foundation,
-        population: dataCiudad.population
-
+        city: dato.city,
+        photo: dato.photo,
+        country: dato.country,
+        description: dato.description,
+        foundation: dato.foundation,
+        population: dato.population,
+        location: dato.location
+})
     })
-}
+
 
 
 
