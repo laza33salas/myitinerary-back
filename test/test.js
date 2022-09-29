@@ -127,45 +127,46 @@ const {assert} = require('chai')
 //--------------------------------------------------------------------------------------------------------------------
 //PUT
 let token
-// describe("PUT /itineraries/:id", ()=>{
-//     it("Must respond with You have updated an itinerary.", (done)=>{
-//         request(app)
-//             .put('/itineraries/6321e5609ed8e659adb4d69c')
-//             .send({
-//                 name: "Harry Potter",
-//                 price: 700,
-//             })
-//             .set({"Authorization": "Bearer " + token})
-//             .expect(200)
-//             .then((res) => {
-//                 assert.isObject(res.body.response)
-//                 done()
-//             })
-//     })
-// }),
+describe("PUT /itineraries/:id", ()=>{
+    it("Must respond with You have updated an itinerary.", (done)=>{
+        request(app)
+            .put('/itineraries/6321e5609ed8e659adb4d69c')
+            .send({
+                name: "Harry Potter",
+                price: 700,
+            })
+            .set({"Authorization": "Bearer " + token})
+            .expect(200)
+            .then((res) => {
+                assert.isObject(res.body.response)
+                done()
+            })
+    })
+}),
 //----------------------------------------------------------------------------------------------
-// describe("POST /users/signin", ()=>{
-//     it("Must respond with user signed in", (done)=>{
-//         request(app)
-//             .post('/users/signin')
-//             .send({
-//                 mail: "serehokage@gmail.com",
-//                 password : "sasuke",
-//                 from: "form"
-//                 })
-//             .expect(200)
-//             .then((res) => {
-//                 console.log(res.body.message)
-//                 token = res.body.response.token
-//                 done()
-//             })
-//     })
+//POST
+ describe("POST /users/signin", ()=>{
+    it("Must respond with user signed in", (done)=>{
+       request(app)
+           .post('/users/signin')
+           .send({
+               mail: "serehokage@gmail.com",
+                password : "sasuke",
+                from: "form"
+                })
+            .expect(200)
+            .then((res) => {
+                console.log(res.body.message)
+                token = res.body.response.token
+                done()
+            })
+    })
 
-// })
+})
 //----------------------------------------------------------------------------------------
 //GET
 
-describe("GET /itineraries/users", ()=>{
+describe("GET /itineraries", ()=>{
 
     it("Must respond with all itineraries", (done)=>{
             request(app)
